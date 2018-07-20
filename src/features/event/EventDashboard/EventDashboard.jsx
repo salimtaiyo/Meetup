@@ -8,7 +8,7 @@ const events = [
   {
     id: '1',
     title: 'Trip to Tower of London',
-    date: '2018-03-27T11:00:00+00:00',
+    date: '2018-03-27',
     category: 'culture',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
@@ -32,7 +32,7 @@ const events = [
   {
     id: '2',
     title: 'Trip to Punch and Judy Pub',
-    date: '2018-03-28T14:00:00+00:00',
+    date: '2018-03-28',
     category: 'drinks',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
@@ -60,12 +60,14 @@ class EventDashboard extends Component {
   
   state={
     event: events,
-    isOpen: false
+    isOpen: false,
+    selectedEvent: null
   }
 
   formClose = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
+      selectedEvent:null
     })
   }
 
@@ -80,6 +82,35 @@ class EventDashboard extends Component {
 
   }
 
+  editEvent = (edit) => () => {
+    console.log(edit);
+    this.setState({
+      selectedEvent:edit,
+      isOpen:true
+    })
+  }
+
+  formUpdate = (updatedForm) =>{
+     this.setState({
+      event: this.state.event.map( i => {
+        if(i.id === updatedForm.id){
+          return Object.assign({}, updatedForm)
+        }else{
+          return i;
+        }
+      }),
+      isOpen:false
+    })
+  }
+
+  deleteList = (deleteId) => ()=>{
+    this.setState({
+      event: this.state.event.filter( i => {
+        return i.id !== deleteId.id
+      })
+    })
+  }
+
   render() {
     return (
       <div>
@@ -87,13 +118,19 @@ class EventDashboard extends Component {
             <Grid.Column width={10}>
                 <EventList
                   events = {this.state.event}
+                  edit={this.editEvent}
+                  delete={this.deleteList} 
                 />
             </Grid.Column>
 
             <Grid.Column width={6}>
                 <Button onClick={this.formClose} positive content="Create Event"/>
 
-               { this.state.isOpen && <EventForm addEvent={this.createEvent} close={this.formClose}/>}
+               { this.state.isOpen && <EventForm update={this.formUpdate} 
+                                                 selectedEvent={this.state.selectedEvent} 
+                                                 addEvent={this.createEvent} 
+                                                 close={this.formClose}
+                                                 />}
 
             </Grid.Column>
         </Grid>

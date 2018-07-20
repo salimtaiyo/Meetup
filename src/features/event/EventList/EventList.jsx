@@ -9,7 +9,9 @@ import EventListItem from './EventListItem';
       <div>
         <h1> List </h1>
         {
-            events.map( i => <EventListItem key={i.id} event= {i}/>
+            events.map( i => <EventListItem key={i.id} event= {i}
+                               edit={this.props.edit}
+                               delete={this.props.delete}/>
 
             )
         }
