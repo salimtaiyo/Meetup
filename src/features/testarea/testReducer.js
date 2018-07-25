@@ -6,7 +6,7 @@ const initialState = {
 }
 
 export const incrementCounter = (state,payload) => {
-    return { ...state,data:state.data +1 };
+    return { ...state, data:state.data +1 };
 }
 
 export const decrementCounter = (state,payload) => {

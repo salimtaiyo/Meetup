@@ -5,7 +5,7 @@ import NavBar from '../../features/nav/NavBar/NavBar';
 import { Container } from '../../../node_modules/semantic-ui-react';
 import EventForm from '../../features/event/EventForm/EventForm';
 import SettingsDashboard from '../../features/user/Settings/SettingsDashboard';
-import UserDetailed from '../../features/user/UserDetailed/UserDetailedPage';
+import UserDetailedPage from '../../features/user/UserDetailed/UserDetailedPage';
 import PeopleDashboard from '../../features/user/PeopleDashboard/PeopleDashboard';
 import EventDetailedPage from '../../features/event/EventDetailed/EventDetailedPage';
 import HomePage from '../../features/home/HomePage';
@@ -29,7 +29,7 @@ class App extends Component {
                 <Route path="/events" component={EventDashboard}/>
                 <Route path="/event/:id" component={EventDetailedPage}/>
                 <Route path="/people" component={PeopleDashboard}/>
-                <Route path="/profile/:id" component={UserDetailed}/>
+                <Route path="/profile/:id" component={UserDetailedPage}/>
                 <Route path="/settings" component={SettingsDashboard}/>
                 <Route path="/createEvent" component={EventForm}/> 
                 <Route path="/test" component={TestComponent}/> 
@@ -39,6 +39,7 @@ class App extends Component {
               </div>
         )} />
      </div>
+ 
      
         
     );
