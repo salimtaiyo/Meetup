@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import cuid from 'cuid';
 import { connect } from 'react-redux';
-import { createEvent, deleteEvent, updateEvent } from '../eventReducer';
+import { createEvent, deleteEvent, updateEvent } from '../eventActions';
 import { Grid, Button } from 'semantic-ui-react';
 import EventList from '../EventList/EventList';
 import EventForm from '../EventForm/EventForm';
